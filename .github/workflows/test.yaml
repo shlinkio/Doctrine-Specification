@@ -4,7 +4,7 @@ on: [push, pull_request ]
 
 jobs:
     test:
-        name: 'PHP ${{ matrix.php-version }} + ${{ matrix.dependencies }} + ${{ matrix.variant }}'
+        name: 'PHP ${{ matrix.php-version }} + ${{ matrix.dependencies }}'
         runs-on: ubuntu-latest
 
         strategy:
@@ -14,43 +14,20 @@ jobs:
                     - lowest
                     - highest
                 php-version:
-                    - '7.2'
-                    - '7.3'
-                    - '7.4'
-                    - '8.0'
-                variant: [normal]
-                include:
-                    - php-version: '7.2'
-                      dependencies: highest
-                      variant: 'doctrine/orm:~2.5'
-                    - php-version: '7.2'
-                      dependencies: highest
-                      variant: 'doctrine/orm:~2.6'
-                    - php-version: '7.2'
-                      dependencies: highest
-                      variant: 'doctrine/orm:~2.7'
-                    - php-version: '8.0'
-                      dependencies: highest
-                      variant: 'doctrine/orm:~2.7 symfony/property-access:^6.0'
+                    - '8.2'
+                    - '8.3'
         steps:
             - name: Checkout
               uses: actions/checkout@v2
-
             - name: Install PHP with extensions
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-version }}
                   tools: composer:v2
-
-            - name: Install variant
-              if: matrix.variant != 'normal'
-              run: composer require ${{ matrix.variant }} --no-update
-
             - name: 'Install Composer dependencies (${{ matrix.dependencies }})'
               uses: 'ramsey/composer-install@v1'
               with:
                   dependency-versions: '${{ matrix.dependencies }}'
                   composer-options: '--prefer-dist --prefer-stable'
-
             - name: Run Tests
               run: composer test
