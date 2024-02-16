@@ -67,7 +67,7 @@ final class OrXSpec extends ObjectBehavior
         $specificationB->getFilter($qb, $context)->willReturn($filterB);
         $qb->expr()->willReturn($expression);
 
-        $expression->orX($filterA, $filterB)->shouldBeCalled();
+        $expression->orX($filterA, $filterB)->shouldBeCalled()->willReturn(new Expr\Orx([$filterA, $filterB]));
 
         $this->getFilter($qb, $context);
     }
@@ -88,7 +88,7 @@ final class OrXSpec extends ObjectBehavior
         $exprB->getFilter($qb, $context)->willReturn($filterB);
         $qb->expr()->willReturn($expression);
 
-        $expression->orX($filterA, $filterB)->shouldBeCalled();
+        $expression->orX($filterA, $filterB)->shouldBeCalled()->willReturn(new Expr\Orx([$filterA, $filterB]));
 
         $this->getFilter($qb, $context);
     }

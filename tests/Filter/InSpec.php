@@ -46,12 +46,14 @@ final class InSpec extends ObjectBehavior
     {
         $context = 'a';
         $qb->expr()->willReturn($expr);
-        $expr->in(sprintf('%s.%s', $context, $this->field), ':comparison_10')->shouldBeCalled();
+        $expr->in(sprintf('%s.%s', $context, $this->field), ':comparison_10')->shouldBeCalled()->willReturn(
+            new Expr\Func($context . ' IN', (array) $this->field)
+        );
 
         $qb->getParameters()->willReturn($parameters);
         $parameters->count()->willReturn(10);
 
-        $qb->setParameter('comparison_10', $this->value, null)->shouldBeCalled();
+        $qb->setParameter('comparison_10', $this->value, null)->shouldBeCalled()->willReturn($qb);
 
         $this->getFilter($qb, 'a');
     }

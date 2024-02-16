@@ -1,7 +1,7 @@
 {
-    "name": "happyr/doctrine-specification",
+    "name": "shlinkio/doctrine-specification",
     "type": "library",
-    "description": "Specification Pattern for your Doctrine repositories",
+    "description": "Specification Pattern for your Doctrine repositories. Forked from https://github.com/Happyr/Doctrine-Specification",
     "keywords": ["Doctrine", "Repository", "Specification"],
     "homepage": "http://developer.happyr.com/",
     "license": "MIT",
@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=8.2",
-        "doctrine/orm": "^2.18",
+        "doctrine/orm": "^3.0 || ^2.18",
         "symfony/property-access": "^7.0 || ^6.0",
         "symfony/polyfill-php80": "^1.20"
     },
