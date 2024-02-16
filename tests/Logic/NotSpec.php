@@ -46,9 +46,9 @@ final class NotSpec extends ObjectBehavior
         $qb->expr()->willReturn($expr);
         $filterExpr->getFilter($qb, $context)->willReturn($parentExpression);
 
-        $expr->not($parentExpression)->willReturn($expression);
+        $expr->not($parentExpression)->willReturn(new Expr\Func('NOT', [$expression]));
 
-        $this->getFilter($qb, $context)->shouldReturn($expression);
+        $this->getFilter($qb, $context)->shouldReturn('NOT(expression)');
     }
 
     /**

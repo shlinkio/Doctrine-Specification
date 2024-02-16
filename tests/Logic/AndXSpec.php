@@ -68,7 +68,7 @@ final class AndXSpec extends ObjectBehavior
         $specificationB->getFilter($qb, $context)->willReturn($filterB);
         $qb->expr()->willReturn($expression);
 
-        $expression->andX($filterA, $filterB)->shouldBeCalled();
+        $expression->andX($filterA, $filterB)->shouldBeCalled()->willReturn(new Expr\Andx([$filterA, $filterB]));
 
         $this->getFilter($qb, $context);
     }
@@ -85,7 +85,7 @@ final class AndXSpec extends ObjectBehavior
         $exprB->getFilter($qb, $context)->willReturn($filterB);
         $qb->expr()->willReturn($expression);
 
-        $expression->andX($filterA, $filterB)->shouldBeCalled();
+        $expression->andX($filterA, $filterB)->shouldBeCalled()->willReturn(new Expr\Andx([$filterA, $filterB]));
 
         $this->getFilter($qb, $context);
     }

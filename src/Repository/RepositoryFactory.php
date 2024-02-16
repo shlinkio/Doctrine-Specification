@@ -32,11 +32,10 @@ class RepositoryFactory implements RepositoryFactoryInterface
      * @param EntityManagerInterface $entityManager the EntityManager instance
      * @param string                 $entityName    the name of the entity
      *
-     * @return EntityRepository
-     *
-     * @phpstan-template T
+     * @phpstan-template T of object
      * @phpstan-param class-string<T> $entityName
      * @phpstan-return EntityRepository<T>
+     * @return EntityRepository<T>
      */
     public function getRepository(EntityManagerInterface $entityManager, $entityName): EntityRepository
     {
