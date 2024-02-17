@@ -24,6 +24,6 @@ final class Select extends AbstractSelect
      */
     protected function modifySelection(QueryBuilder $qb, array $selections): void
     {
-        $qb->select($selections);
+        $qb->select(...$selections);
     }
 }
