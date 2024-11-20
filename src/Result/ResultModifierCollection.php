@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Happyr\DoctrineSpecification\Result;
 
 use Doctrine\ORM\AbstractQuery;
-use Happyr\DoctrineSpecification\Exception\InvalidArgumentException;
 
 final class ResultModifierCollection implements ResultModifier
 {
@@ -40,14 +39,6 @@ final class ResultModifierCollection implements ResultModifier
     public function modify(AbstractQuery $query): void
     {
         foreach ($this->children as $child) {
-            if (!$child instanceof ResultModifier) {
-                throw new InvalidArgumentException(sprintf(
-                    'Child passed to ResultModifierCollection must be an instance of %s, but instance of %s found',
-                    ResultModifier::class,
-                    get_class($child)
-                ));
-            }
-
             $child->modify($query);
         }
     }
