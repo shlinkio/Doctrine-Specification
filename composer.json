@@ -21,12 +21,13 @@
     ],
     "require": {
         "php": ">=8.2",
-        "doctrine/orm": "^3.0 || ^2.18",
-        "symfony/property-access": "^7.0 || ^6.0",
-        "symfony/polyfill-php80": "^1.20"
+        "doctrine/orm": "^3.3",
+        "symfony/property-access": "^7.1",
+        "symfony/polyfill-php80": "^1.31"
     },
     "require-dev": {
-        "phpspec/phpspec": "^7.5"
+        "phpspec/phpspec": "^7.5",
+        "phpspec/prophecy": "1.20"
     },
     "autoload": {
         "psr-4": {
