@@ -5,7 +5,7 @@ on: [push, pull_request ]
 jobs:
     test:
         name: 'PHP ${{ matrix.php-version }} + ${{ matrix.dependencies }}'
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
 
         strategy:
             fail-fast: false
@@ -16,9 +16,10 @@ jobs:
                 php-version:
                     - '8.2'
                     - '8.3'
+                    - '8.4'
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
             - name: Install PHP with extensions
               uses: shivammathur/setup-php@v2
               with:
@@ -28,6 +29,6 @@ jobs:
               uses: 'ramsey/composer-install@v1'
               with:
                   dependency-versions: '${{ matrix.dependencies }}'
-                  composer-options: '--prefer-dist --prefer-stable'
+                  composer-options: --prefer-dist --prefer-stable ${{ matrix.php-version == '8.4' && '--ignore-platform-req=php' || '' }}
             - name: Run Tests
               run: composer test
