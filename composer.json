@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "phpspec/phpspec": "^7.5",
-        "phpspec/prophecy": "1.20"
+        "phpspec/prophecy": "^1.20"
     },
     "autoload": {
         "psr-4": {
