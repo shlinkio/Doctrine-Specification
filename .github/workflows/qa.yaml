@@ -12,17 +12,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install PHP with extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.2
+          php-version: 8.3
           coverage: none
           tools: cs2pr, phpstan, composer:v2
 
       - name: Install Composer dependencies (highest)
-        uses: 'ramsey/composer-install@v1'
+        uses: 'ramsey/composer-install@v3'
         with:
           dependency-versions: 'highest'
           composer-options: '--prefer-dist --prefer-stable'

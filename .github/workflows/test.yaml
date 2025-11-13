@@ -14,21 +14,21 @@ jobs:
                     - lowest
                     - highest
                 php-version:
-                    - '8.2'
                     - '8.3'
                     - '8.4'
+                    - '8.5'
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
             - name: Install PHP with extensions
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-version }}
                   tools: composer:v2
             - name: 'Install Composer dependencies (${{ matrix.dependencies }})'
-              uses: 'ramsey/composer-install@v1'
+              uses: 'ramsey/composer-install@v3'
               with:
                   dependency-versions: '${{ matrix.dependencies }}'
-                  composer-options: --prefer-dist --prefer-stable ${{ matrix.php-version == '8.4' && '--ignore-platform-req=php' || '' }}
+                  composer-options: --prefer-dist --prefer-stable ${{ matrix.php-version != '8.3' && '--ignore-platform-req=php' || '' }}
             - name: Run Tests
               run: composer test
