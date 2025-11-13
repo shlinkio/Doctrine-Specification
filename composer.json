@@ -20,14 +20,13 @@
         }
     ],
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "doctrine/orm": "^3.3",
-        "symfony/property-access": "^7.1",
-        "symfony/polyfill-php80": "^1.31"
+        "symfony/property-access": "^7.3 || ^8.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^7.5",
-        "phpspec/prophecy": "^1.20"
+        "phpspec/phpspec": "^8.0.0",
+        "phpspec/prophecy": "^1.23"
     },
     "autoload": {
         "psr-4": {
@@ -46,5 +45,10 @@
     },
     "scripts": {
         "test": "vendor/bin/phpspec run"
+    },
+    "config": {
+        "audit": {
+            "ignore": ["PKSA-wws7-mr54-jsny"]
+        }
     }
 }
